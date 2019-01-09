@@ -1,4 +1,7 @@
 package stonetree.com.stntech.login.router;
 
-public interface ILoginRouter {
+import stonetree.com.stntech.core.router.ICoreRouter;
+
+public interface ILoginRouter extends ICoreRouter {
+
 }

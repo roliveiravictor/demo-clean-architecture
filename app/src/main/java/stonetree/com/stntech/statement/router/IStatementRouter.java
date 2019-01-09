@@ -1,4 +1,6 @@
 package stonetree.com.stntech.statement.router;
 
-public interface IStatementRouter {
+import stonetree.com.stntech.core.router.ICoreRouter;
+
+public interface IStatementRouter extends ICoreRouter {
 }

@@ -5,30 +5,35 @@ import java.lang.ref.WeakReference;
 import stonetree.com.stntech.login.interactor.LoginInteractor;
 import stonetree.com.stntech.login.presenter.LoginPresenter;
 import stonetree.com.stntech.login.router.LoginRouter;
-import stonetree.com.stntech.login.view.ILoginActivity;
 import stonetree.com.stntech.login.view.LoginActivity;
+import stonetree.com.stntech.login.worker.LoginWorker;
 
 public enum LoginConfigurator {
 
     INSTANCE;
 
-    public void configure(LoginActivity activity){
+    public void configure(LoginActivity activity) {
 
-        LoginRouter router = new LoginRouter();
+        final LoginWorker worker = new LoginWorker();
+
+        final LoginRouter router = new LoginRouter();
         router.view = new WeakReference<>(activity);
 
-        LoginPresenter presenter = new LoginPresenter();
-        presenter.view = new WeakReference<ILoginActivity>(activity);
+        final LoginPresenter presenter = new LoginPresenter();
+        presenter.view = new WeakReference<>(activity);
 
-        LoginInteractor interactor = new LoginInteractor();
+        final LoginInteractor interactor = new LoginInteractor();
         interactor.presenter = presenter;
+        interactor.worker = worker;
 
-        if (activity.interactor == null){
+        if (activity.interactor == null) {
             activity.interactor = interactor;
         }
-        if (activity.router == null){
+
+        if (activity.router == null) {
             activity.router = router;
         }
+
     }
 
 }
